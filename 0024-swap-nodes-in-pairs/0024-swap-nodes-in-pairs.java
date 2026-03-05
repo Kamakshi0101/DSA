@@ -9,24 +9,43 @@
  * }
  */
 class Solution {
-    public void swap(ListNode prev,ListNode curr)
-    {
-        if(curr==null || curr.next==null) return;
+    // public void swap(ListNode prev,ListNode curr)
+    // {
+    //     if(curr==null || curr.next==null) return;
 
-        ListNode first=curr;
-        ListNode second= curr.next;
+    //     ListNode first=curr;
+    //     ListNode second= curr.next;
 
-        first.next=second.next;
-        second.next=first;
-        prev.next=second;
+    //     first.next=second.next;
+    //     second.next=first;
+    //     prev.next=second;
 
-        swap(first,first.next);
-    }
+    //     swap(first,first.next);
+    // }
     public ListNode swapPairs(ListNode head) {
-        ListNode dummy= new ListNode(-1);
+        // ListNode dummy= new ListNode(-1);
+        // dummy.next=head;
+        // ListNode p=dummy;
+        // swap(p,head);
+        // return dummy.next;
+
+        ListNode dummy= new ListNode(0);
         dummy.next=head;
-        ListNode p=dummy;
-        swap(p,head);
+
+        ListNode prev=dummy;
+        ListNode curr1=head;
+
+        while(curr1!=null && curr1.next!=null)
+        {
+            ListNode curr2= curr1.next;
+            prev.next= curr2;
+            curr1.next= curr2.next;
+            curr2.next=curr1;
+
+            prev=curr1;
+            curr1=curr1.next;
+        }
+
         return dummy.next;
     }
 }
